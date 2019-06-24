@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class FlexiblePageControl: UIView {
+@objc public class FlexiblePageControl: UIView {
 
     // MARK: public
     
@@ -46,7 +46,7 @@ public class FlexiblePageControl: UIView {
         update(currentPage: currentPage, config: config)
     }
 
-    public func setCurrentPage(at currentPage: Int, animated: Bool = false) {
+    @objc public func setCurrentPage(at currentPage: Int, animated: Bool = false) {
 
         guard (currentPage < numberOfPages && currentPage >= 0) else { return }
         guard currentPage != self.currentPage else { return }
@@ -59,7 +59,7 @@ public class FlexiblePageControl: UIView {
 
     public private(set) var currentPage: Int = 0
     
-    public var numberOfPages: Int = 0 {
+    @objc public var numberOfPages: Int = 0 {
         didSet {
             scrollView.isHidden = (numberOfPages <= 1 && hidesForSinglePage)
             displayCount = min(config.displayCount, numberOfPages)
@@ -67,13 +67,13 @@ public class FlexiblePageControl: UIView {
         }
     }
 
-    public var pageIndicatorTintColor: UIColor = UIColor(red: 0.86, green: 0.86, blue: 0.86, alpha: 1.00) {
+    @objc public var pageIndicatorTintColor: UIColor = UIColor(red: 0.86, green: 0.86, blue: 0.86, alpha: 1.00) {
         didSet {
             updateDotColor(currentPage: currentPage)
         }
     }
 
-    public var currentPageIndicatorTintColor: UIColor = UIColor(red: 0.32, green: 0.59, blue: 0.91, alpha: 1.00) {
+    @objc public var currentPageIndicatorTintColor: UIColor = UIColor(red: 0.32, green: 0.59, blue: 0.91, alpha: 1.00) {
         didSet {
             updateDotColor(currentPage: currentPage)
         }
@@ -81,13 +81,13 @@ public class FlexiblePageControl: UIView {
 
     public var animateDuration: TimeInterval = 0.3
 
-    public var hidesForSinglePage: Bool = false {
+    @objc public var hidesForSinglePage: Bool = false {
         didSet {
             scrollView.isHidden = (numberOfPages <= 1 && hidesForSinglePage)
         }
     }
 
-    public init() {
+    @objc public init() {
 
         super.init(frame: .zero)
 
@@ -95,7 +95,7 @@ public class FlexiblePageControl: UIView {
         updateViewSize()
     }
 
-    public override init(frame: CGRect) {
+    @objc public override init(frame: CGRect) {
 
         super.init(frame: frame)
 
@@ -110,25 +110,25 @@ public class FlexiblePageControl: UIView {
         updateViewSize()
     }
 
-    public override func layoutSubviews() {
+    @objc public override func layoutSubviews() {
 
         super.layoutSubviews()
         
         scrollView.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
     }
 
-    public override var intrinsicContentSize: CGSize {
+    @objc public override var intrinsicContentSize: CGSize {
 
         return CGSize(width: itemSize * CGFloat(displayCount), height: itemSize)
     }
 
-    public func setProgress(contentOffsetX: CGFloat, pageWidth: CGFloat) {
+    @objc public func setProgress(contentOffsetX: CGFloat, pageWidth: CGFloat) {
 
         let currentPage = Int(round(contentOffsetX / pageWidth))
         setCurrentPage(at: currentPage, animated: true)
     }
 
-    public func updateViewSize() {
+    @objc public func updateViewSize() {
 
         self.bounds.size = intrinsicContentSize
     }
