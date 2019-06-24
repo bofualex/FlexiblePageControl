@@ -21,7 +21,7 @@ import UIKit
         public var mediumDotSizeRatio: CGFloat
         
         public init(displayCount: Int = 7,
-                    dotSize: CGFloat = 6.0,
+                    dotSize: CGFloat = 8.0,
                     dotSpace: CGFloat = 4.0,
                     smallDotSizeRatio: CGFloat = 0.5,
                     mediumDotSizeRatio: CGFloat = 0.7) {
